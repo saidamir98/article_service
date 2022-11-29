@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"uacademy/article/config"
-	"uacademy/article/storage"
+	"uacademy/blogpost/article_service/config"
+	"uacademy/blogpost/article_service/storage"
 )
 
 // Handler ...

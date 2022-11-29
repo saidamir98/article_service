@@ -1,4 +1,4 @@
-module uacademy/article
+module uacademy/blogpost/article_service
 
 go 1.16
 

@@ -1,6 +1,6 @@
 package storage
 
-import "uacademy/article/models"
+import "uacademy/blogpost/article_service/models"
 
 // StorageI ...
 type StorageI interface {

@@ -2,7 +2,7 @@ package postgres
 
 import (
 	"errors"
-	"uacademy/article/models"
+	"uacademy/blogpost/article_service/models"
 )
 
 // AddAuthor ...

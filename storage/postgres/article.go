@@ -2,11 +2,13 @@ package postgres
 
 import (
 	"errors"
+	"fmt"
 	"uacademy/blogpost/article_service/models"
 )
 
 // AddArticle ...
 func (stg Postgres) AddArticle(id string, entity models.CreateArticleModel) error {
+	fmt.Println(entity)
 	_, err := stg.GetAuthorByID(entity.AuthorID)
 	if err != nil {
 		return err

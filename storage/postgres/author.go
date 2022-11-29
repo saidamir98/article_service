@@ -1,7 +1,6 @@
 package postgres
 
 import (
-	"errors"
 	"uacademy/blogpost/article_service/models"
 )
 
@@ -20,13 +19,25 @@ func (stg Postgres) AddAuthor(id string, entity models.CreateAuthorModel) error 
 // GetAuthorByID ...
 func (stg Postgres) GetAuthorByID(id string) (models.Author, error) {
 	var result models.Author
-	// for _, v := range im.Db.InMemoryAuthorData {
-	// 	if v.ID == id {
-	// 		result = v
-	// 		return result, nil
-	// 	}
-	// }
-	return result, errors.New("author not found")
+
+	err := stg.db.QueryRow(`SELECT 
+		id,
+		fullname,
+		created_at,
+		updated_at,
+		deleted_at
+    FROM author WHERE id = $1`, id).Scan(
+		&result.ID,
+		&result.Fullname,
+		&result.CreatedAt,
+		&result.UpdatedAt,
+		&result.DeletedAt,
+	)
+	if err != nil {
+		return result, err
+	}
+
+	return result, nil
 }
 
 // GetAuthorList ...

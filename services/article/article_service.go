@@ -2,7 +2,6 @@ package article
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	"uacademy/blogpost/article_service/models"
@@ -37,8 +36,6 @@ func (s *articleService) Ping(ctx context.Context, req *blogpost.Empty) (*blogpo
 
 // CreateArticle ...
 func (s *articleService) CreateArticle(ctx context.Context, req *blogpost.CreateArticleRequest) (*blogpost.Article, error) {
-	fmt.Println(req)
-
 	id := uuid.New()
 
 	err := s.stg.AddArticle(id.String(), models.CreateArticleModel{
@@ -178,7 +175,7 @@ func (s *articleService) GetArticleByID(ctx context.Context, req *blogpost.GetAr
 	}
 
 	if article.DeletedAt != nil {
-		return nil, status.Errorf(codes.NotFound, "s.stg.GetArticleByID: %s", err.Error())
+		return nil, status.Errorf(codes.NotFound, "s.stg.GetArticleByID: article with id:%s not found", req.Id)
 	}
 
 	var updatedAt string
